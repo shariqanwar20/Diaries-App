@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Route, Switch } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Box, Button, Flex, Text } from "theme-ui";
 import { setUser } from "../../../features/auth/userSlice";
@@ -10,9 +11,12 @@ import { User } from "../../../interfaces/user.interface";
 import { RootState } from "../../../redux/rootReducer";
 import { AppDispatch } from "../../../redux/store";
 import http from "../../../services/mirage/api";
+import { DiaryEntriesList } from "./DiaryEntriesList";
+import { DiaryTile } from "./DiaryTile";
 
 export const Diaries = () => {
   const user = useSelector((state: RootState) => state.user.user);
+  const diaries = useSelector((state: RootState) => state.diaries);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -79,29 +83,44 @@ export const Diaries = () => {
   };
   return (
     <div style={{ width: "400px" }}>
-      <Button sx={{ borderRadius: "7px" }} onClick={createNewDiary}>
-        CREATE NEW
-      </Button>
-
       {/* part of diary tile */}
-      <Box sx={{ margin: "0px 10px" }}>
-        <Text>My First Diary</Text>
-        <Text>1 saved entries</Text>
-        <Flex>
-          <Button sx={{ borderRadius: "7px" }}>ADD NEW ENTRY</Button>
-          <Button sx={{ marginLeft: "5px", borderRadius: "7px" }}>
-            VIEW ALL
-          </Button>
-        </Flex>
-      </Box>
-      <Box>
-        <Text>My Second Diary</Text>
-        <Text>1 saved entries</Text>
-        <Flex>
-          <Button>ADD NEW ENTRY</Button>
-          <Button>VIEW ALL</Button>
-        </Flex>
-      </Box>
+      <Switch>
+        <Route path="/diary/:id">
+          <DiaryEntriesList />
+        </Route>
+        <Route path="/">
+          <div
+            style={{
+              textAlign: "center",
+              marginBottom: "20px",
+              marginTop: "10px",
+            }}
+          >
+            <Button
+              onClick={createNewDiary}
+              sx={{
+                borderRadius: "7px",
+                width: "90%",
+                boxShadow: "0px 0px 8px grey",
+              }}
+            >
+              Create New
+            </Button>
+          </div>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              margin: "0 auto",
+            }}
+          >
+            {diaries.map((diary, idx) => (
+              <DiaryTile key={idx} diary={diary} />
+            ))}
+          </Box>
+        </Route>
+      </Switch>
     </div>
   );
 };

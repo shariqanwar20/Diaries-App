@@ -109,6 +109,8 @@ export const updateEntry = (schema: any, req: Request): Entry | Response => {
 export const getEntries = (schema: any, req: Request): Entry[] | Response => {
   try {
     const diary = schema.diaries.find(req.params.id);
+    console.log("From diary route ===> " + diary.entry);
+
     return diary.entry as Entry[];
   } catch (error) {
     return handleErrors(error, "Failed to display entries");

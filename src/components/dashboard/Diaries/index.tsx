@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import Swal from "sweetalert2";
-import { Box, Button, Flex, Text } from "theme-ui";
+import { Box, Button } from "theme-ui";
 import { setUser } from "../../../features/auth/userSlice";
 import { addDiary } from "../../../features/diary/diariesSlice";
 import { Diary } from "../../../interfaces/diary.interface";

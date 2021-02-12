@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { Box, Text, Flex, Button, Input, IconButton } from "theme-ui";
+import { Box, Text, Flex, Button, Input } from "theme-ui";
 import { updateDiary } from "../../../features/diary/diariesSlice";
 import {
   setActiveDiaryId,
@@ -12,7 +12,6 @@ import { Diary } from "../../../interfaces/diary.interface";
 import { AppDispatch } from "../../../redux/store";
 import http from "../../../services/mirage/api";
 import { showAlert } from "../../../services/mirage/util";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 
 interface Props {
   diary: Diary;

@@ -1,9 +1,7 @@
-import { Formik } from "formik";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { Box, Label, Input, Button } from "theme-ui";
-import * as Yup from "yup";
+import { Label, Input, Button } from "theme-ui";
 import { saveToken, setIsAuthenticated } from "../../features/auth/authSlice";
 import { setUser } from "../../features/auth/userSlice";
 import { User } from "../../interfaces/user.interface";
@@ -12,16 +10,16 @@ import http from "../../services/mirage/api";
 import { AuthResponse } from "../../services/mirage/routes/user";
 // import { yupResolver } from '@hookform/resolvers/yup';
 
-const validationSchema = Yup.object().shape({
-  username: Yup.string()
-    .required("What? No username?")
-    .max(16, "Username cannot be longer than 16 characters"),
-  password: Yup.string().required('Without a password, "None shall pass!"'),
-  email: Yup.string().email("Please provide a valid email address (abc@xy.z)"),
-});
+// const validationSchema = Yup.object().shape({
+//   username: Yup.string()
+//     .required("What? No username?")
+//     .max(16, "Username cannot be longer than 16 characters"),
+//   password: Yup.string().required('Without a password, "None shall pass!"'),
+//   email: Yup.string().email("Please provide a valid email address (abc@xy.z)"),
+// });
 
 export const Auth = () => {
-  const { handleSubmit, register, errors } = useForm<User>();
+  const { handleSubmit, register } = useForm<User>();
   const [isLogin, setIsLogin] = useState(true);
   // const [loading, setLoading] = useState(false);
   const path = isLogin ? "/auth/login" : "/auth/signup";

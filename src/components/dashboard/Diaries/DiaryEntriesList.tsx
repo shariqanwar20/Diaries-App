@@ -10,7 +10,7 @@ import { setEntries } from "../../../features/entry/entriesSlice";
 import { RootState } from "../../../redux/rootReducer";
 import { AppDispatch } from "../../../redux/store";
 import http from "../../../services/mirage/api";
-import { Box, Flex } from "theme-ui";
+import { Box } from "theme-ui";
 
 export const DiaryEntriesList = () => {
   const entries = useSelector((state: RootState) => state.entries);

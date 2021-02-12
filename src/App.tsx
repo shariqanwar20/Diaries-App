@@ -5,6 +5,7 @@ import { Diaries } from "./components/dashboard/Diaries";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/rootReducer";
+import { Home } from "./components/dashboard/Home";
 
 function App() {
   const isLoggedIn = useSelector(
@@ -14,7 +15,7 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/">{isLoggedIn ? <Diaries /> : <Auth />}</Route>
+          <Route path="/">{isLoggedIn ? <Home /> : <Auth />}</Route>
         </Switch>
       </Router>
       {/* <Diaries /> */}
